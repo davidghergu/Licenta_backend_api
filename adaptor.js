@@ -25,6 +25,14 @@ module.exports = {
       console.error(err);
     }
   },
+  async createEvent(req, res, next) {
+    try {
+      res.send(await cowController.createEvent(req.body));
+    } catch (err) {
+      next(err);
+      console.error(err);
+    }
+  },
 
   async createCereale(req, res, next) {
     try {

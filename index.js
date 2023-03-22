@@ -80,6 +80,9 @@ app.post("/users", (req, res) => {
 app.post("/cow", adaptor.createCow);
 app.get("/cow", adaptor.getAllCows);
 
+app.post("/event", adaptor.createEvent);
+app.put("/event", adaptor.updateEvent);
+
 app.put("/users/:id", (req, res) => {
   console.log(req.params);
   const id = parseInt(req.params.id, 10);
