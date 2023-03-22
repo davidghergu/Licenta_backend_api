@@ -7,12 +7,12 @@ const eventSchema = new Schema(
       type: String,
       required: true,
     },
-    tip_sarcina: {
-      type: String,
-      enum: ["Vita", "Sectie"],
-      required: true,
-    },
-    schimbari: [
+    schimbariVite: [
+      {
+        type: String,
+        required: true,
+      },
+    ], schimbariSectii: [
       {
         type: String,
         required: true,
