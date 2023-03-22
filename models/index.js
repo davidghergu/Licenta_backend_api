@@ -5,4 +5,5 @@ module.exports = {
   Reteta: require("./retetaModel"),
   Sectie: require("./sectieModel"),
   Angajat: require("./angajatModel"),
+  Event: require("./eventModel"),
 };

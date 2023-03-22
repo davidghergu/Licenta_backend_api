@@ -21,7 +21,7 @@ const eventSchema = new Schema(
     status: {
       type: String,
       enum: ["Acceptat", "Terminat", "Trimis"],
-      required: true,
+      required: false,
       default: "Trimis",
     },
   },
