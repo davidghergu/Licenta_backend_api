@@ -1,29 +1,29 @@
-const { Cow } = require("../models");
+const { Sectie } = require("../models");
 
 module.exports = {
-  async createCow(cow) {
+  async createSectie(sectie) {
     try {
-      return await Cow.create(cow);
+      return await Sectie.create(sectie);
     } catch (err) {
       throw err;
     }
   },
-  async updateCow(cow) {
-    try {
-      return await Cow.findByIdAndUpdate(cow._id, cow, {
-        new: true,
-      });
-    } catch (err) {
-      throw err;
-    }
-  },
-  async getCowsByQuery(query) {
-    try {
-      return await Cow.find(query).lean();
-    } catch (err) {
-      throw err;
-    }
-  },
+  // async updateCow(cow) {
+  //   try {
+  //     return await Cow.findByIdAndUpdate(cow._id, cow, {
+  //       new: true,
+  //     });
+  //   } catch (err) {
+  //     throw err;
+  //   }
+  // },
+  // async getCowsByQuery(query) {
+  //   try {
+  //     return await Cow.find(query).lean();
+  //   } catch (err) {
+  //     throw err;
+  //   }
+  // },
   // async deleteCow(id) {
   //   try {
   //     const newCow = await Cow.findByIdAndUpdate(

@@ -4,6 +4,7 @@ const {
   dietaController,
   retetaController,
   angajatController,
+  sectieController,
 } = require("./controllers");
 
 module.exports = {
@@ -37,6 +38,14 @@ module.exports = {
   async createCereale(req, res, next) {
     try {
       res.send(await cerealeController.createCereale(req.body));
+    } catch (err) {
+      next(err);
+      console.error(err);
+    }
+  },
+  async createSectie(req, res, next) {
+    try {
+      res.send(await sectieController.createSectie(req.body));
     } catch (err) {
       next(err);
       console.error(err);
@@ -89,28 +98,24 @@ module.exports = {
 
   async updateEventDone(req, res, next) {
     try {
-
       //find event ca sa nu dai if la req.body
       //update status -> terminat
-      if(req.body.schimbariVite){
+      if (req.body.schimbariVite) {
         for (let i = 0; i < req.body.schimbariVite.lenght; i++) {
           // let changeBody = {
           //   _id: req.body.idarray[i],
           //   ...req.body.schimbari[i],
           // };
 
-
           cowController.updateCow(req.body.schimbariVite[i]);
         }
       }
-       
-      if(req.body.schimbariSectii){
+
+      if (req.body.schimbariSectii) {
         for (let i = 0; i < req.body.schimbariSectii.lenght; i++) {
           sectieController.updateSectie(req.body.schimbariSectii[i]);
         }
       }
-        
-      
     } catch (err) {
       res.send(err);
     }

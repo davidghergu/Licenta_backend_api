@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const sectieSchema = new Schema(
   {
     tip: {
+      //exterior interior
       type: String,
       required: true,
     },
@@ -12,6 +13,7 @@ const sectieSchema = new Schema(
       required: true,
     },
     status: {
+      //curatata necuratata
       type: String,
       required: false,
     },
@@ -27,4 +29,4 @@ const sectieSchema = new Schema(
 );
 
 const Sectie = mongoose.model("sectie", sectieSchema);
-module.exports = { Sectie };
+module.exports = Sectie;

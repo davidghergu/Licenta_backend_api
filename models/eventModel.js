@@ -12,7 +12,8 @@ const eventSchema = new Schema(
         type: String,
         required: true,
       },
-    ], schimbariSectii: [
+    ],
+    schimbariSectii: [
       {
         type: String,
         required: true,
@@ -28,5 +29,5 @@ const eventSchema = new Schema(
   { timestamps: true }
 );
 
-const Event = mongoose.model("cow", eventSchema);
+const Event = mongoose.model("event", eventSchema);
 module.exports = Event;
