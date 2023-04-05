@@ -8,11 +8,9 @@ module.exports = {
       throw err;
     }
   },
-  async updateCow(cow) {
+  async updateCow(update) {
     try {
-      return await Cow.findByIdAndUpdate(cow._id, cow, {
-        new: true,
-      });
+      return await Cow.findByIdAndUpdate(update._id, update.$set);
     } catch (err) {
       throw err;
     }
@@ -23,6 +21,20 @@ module.exports = {
     } catch (err) {
       throw err;
     }
+  },
+  createQuery({ id, dieta, categorie }) {
+    const viteQuery = Cow.updateMany(
+      { _id: id },
+      {
+        $set: {
+          dieta: dieta,
+          categorie: categorie,
+          updatedAt: Date.now(),
+        },
+      }
+    );
+
+    return viteQuery.getUpdate();
   },
   // async deleteCow(id) {
   //   try {

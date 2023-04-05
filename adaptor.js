@@ -4,6 +4,7 @@ const {
   dietaController,
   retetaController,
   angajatController,
+  eventController,
   sectieController,
 } = require("./controllers");
 
@@ -28,13 +29,36 @@ module.exports = {
   },
   async createEvent(req, res, next) {
     try {
-      res.send(await cowController.createEvent(req.body));
+      const viteQuery = cowController.createQuery(req.body);
+
+      // const sectiuniQuery = eventController.updateMany(
+      //   { status: "active" },
+      //   { $set: { status: "inactive", updatedAt: Date.now() } }
+      // );
+
+      const improvedQuery = { _id: req.body.id, ...viteQuery };
+      const serializedQuery = JSON.stringify(improvedQuery);
+
+      const newEvent = {
+        sarcina: req.body.sarcina,
+        schimbariVite: serializedQuery,
+      };
+
+      res.send(await eventController.createEvent(newEvent));
     } catch (err) {
       next(err);
       console.error(err);
     }
   },
-
+  async finishEvent(req, res, next) {
+    try {
+      const update = await eventController.finishEvent(req.body);
+      res.send(await cowController.updateCow(update));
+    } catch (err) {
+      next(err);
+      console.error(err);
+    }
+  },
   async createCereale(req, res, next) {
     try {
       res.send(await cerealeController.createCereale(req.body));

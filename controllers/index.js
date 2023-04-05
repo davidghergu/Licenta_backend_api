@@ -4,6 +4,7 @@ const dietaController = require("./dietaController");
 const retetaController = require("./retetaController");
 const angajatController = require("./angajatController");
 const sectieController = require("./sectieController");
+const eventController = require("./eventController");
 
 module.exports = {
   cerealeController,
@@ -12,4 +13,5 @@ module.exports = {
   retetaController,
   angajatController,
   sectieController,
+  eventController,
 };

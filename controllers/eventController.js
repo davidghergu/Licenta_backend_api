@@ -8,15 +8,31 @@ module.exports = {
       throw err;
     }
   },
-  async updateEvent(event) {
+  async finishEvent({ id }) {
     try {
-      return await Event.findByIdAndUpdate(event._id, event, {
-        new: true,
-      });
+      const query = await Event.findOne({ _id: id });
+
+      const updateObject = JSON.parse(query.schimbariVite);
+
+      //     const query = MyModel.updateMany(
+      //       updateObject.filter,
+      //       updateObject.update
+      //     );
+      //     query.exec(function (err, result) {
+      //       if (err) {
+      //         console.log(err);
+      //       } else {
+      //         console.log(result);
+      //       }
+      //     });
+      //   }
+      // });
+      return updateObject;
     } catch (err) {
       throw err;
     }
   },
+
   //   async getAngajatByQuery(query) {
   //     try {
   //       return await Angajat.find(query).lean();

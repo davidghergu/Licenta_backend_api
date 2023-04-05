@@ -7,16 +7,15 @@ const eventSchema = new Schema(
       type: String,
       required: true,
     },
-    schimbariVite: [
-      {
-        type: String,
-        required: true,
-      },
-    ],
+    schimbariVite: {
+      type: String,
+      required: false,
+    },
+
     schimbariSectii: [
       {
         type: String,
-        required: true,
+        required: false,
       },
     ],
     status: {
