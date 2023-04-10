@@ -32,12 +32,11 @@ module.exports = {
       throw err;
     }
   },
-
-  //   async getAngajatByQuery(query) {
-  //     try {
-  //       return await Angajat.find(query).lean();
-  //     } catch (err) {
-  //       throw err;
-  //     }
-  //   },
+  async getEventsByQuery(query) {
+    try {
+      return await Event.find(query).lean();
+    } catch (err) {
+      throw err;
+    }
+  },
 };

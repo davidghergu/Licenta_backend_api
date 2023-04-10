@@ -31,16 +31,19 @@ module.exports = {
     try {
       const viteQuery = cowController.createQuery(req.body);
 
+      const sectiiQuery = sectieController.createQuery(req.body);
+
       // const sectiuniQuery = eventController.updateMany(
       //   { status: "active" },
       //   { $set: { status: "inactive", updatedAt: Date.now() } }
       // );
 
-      const improvedQuery = { _id: req.body.id, ...viteQuery };
-      const serializedQuery = JSON.stringify(improvedQuery);
+      const serializedQuery = JSON.stringify(viteQuery);
+      const filtru = JSON.stringify({ _id: req.body.id });
 
       const newEvent = {
         sarcina: req.body.sarcina,
+        filtruVite: filtru,
         schimbariVite: serializedQuery,
       };
 
@@ -53,6 +56,19 @@ module.exports = {
   async finishEvent(req, res, next) {
     try {
       const update = await eventController.finishEvent(req.body);
+
+      const sourceSectionId = "60e92ab9e6c30c61f36f6b75";
+      const destinationSectionId = "60e92ab9e6c30c61f36f6b76";
+      const cowIds = ["60e92ab9e6c30c61f36f6b7a", "60e92ab9e6c30c61f36f6b7b"];
+
+      const sourceGarage = await Garage.findById(sourceSectionId);
+      const movedCows = await sourceGarage.moveCars(
+        sourceSectionId,
+        destinationSectionId,
+        cowIds
+      );
+      console.log(movedCows);
+
       res.send(await cowController.updateCow(update));
     } catch (err) {
       next(err);
@@ -95,6 +111,14 @@ module.exports = {
   async getAllCows(req, res, next) {
     try {
       res.send(await cowController.getCowsByQuery());
+    } catch (err) {
+      console.error(err);
+    }
+  },
+  async getAllEvents(req, res, next) {
+    const query = { status: { $in: ["Trimis", "Acceptat"] } };
+    try {
+      res.send(await eventController.getEventsByQuery(query));
     } catch (err) {
       console.error(err);
     }

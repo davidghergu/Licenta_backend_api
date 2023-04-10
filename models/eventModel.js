@@ -7,17 +7,18 @@ const eventSchema = new Schema(
       type: String,
       required: true,
     },
+    filtruVite: string,
     schimbariVite: {
       type: String,
       required: false,
     },
 
-    schimbariSectii: [
-      {
-        type: String,
-        required: false,
-      },
-    ],
+    filtruSectii: string,
+    schimbariSectii: {
+      type: String,
+      required: false,
+    },
+
     status: {
       type: String,
       enum: ["Acceptat", "Terminat", "Trimis"],

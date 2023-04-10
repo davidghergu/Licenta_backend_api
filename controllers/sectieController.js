@@ -8,6 +8,20 @@ module.exports = {
       throw err;
     }
   },
+  createQuery({ sectieIdTo, sectieIdFrom, cows }) {
+    const viteQuery = Cow.updateMany(
+      { _id: id },
+      {
+        $set: {
+          dieta: dieta,
+          categorie: categorie,
+          updatedAt: Date.now(),
+        },
+      }
+    );
+
+    return viteQuery.getUpdate();
+  },
   // async updateCow(cow) {
   //   try {
   //     return await Cow.findByIdAndUpdate(cow._id, cow, {
