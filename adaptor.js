@@ -31,7 +31,7 @@ module.exports = {
     try {
       const viteQuery = cowController.createQuery(req.body);
 
-      const sectiiQuery = sectieController.createQuery(req.body);
+      //const sectiiQuery = sectieController.createQuery(req.body);
 
       // const sectiuniQuery = eventController.updateMany(
       //   { status: "active" },
@@ -111,6 +111,24 @@ module.exports = {
   async getAllCows(req, res, next) {
     try {
       res.send(await cowController.getCowsByQuery());
+    } catch (err) {
+      console.error(err);
+    }
+  },
+  async getAllCereale(req, res, next) {
+    try {
+      const result = await cerealeController.getCerealeByQuery();
+      // .aggregate([
+      //   {
+      //     $group: {
+      //       _id: "$nume",
+      //       cantitateTotala: { $sum: "$cantitate" },
+      //       caloriiMedii: { $avg: "$calorii" },
+      //     },
+      //   },
+      // ])
+      // .exec();
+      res.send(result);
     } catch (err) {
       console.error(err);
     }

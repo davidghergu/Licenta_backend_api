@@ -18,11 +18,15 @@ module.exports = {
       throw err;
     }
   },
-  async getCerealeByQuery(query) {
-    try {
-      return await Cereale.find(query).lean();
-    } catch (err) {
-      throw err;
-    }
+  getCerealeByQuery() {
+    return Cereale.aggregate([
+      {
+        $group: {
+          _id: "$nume",
+          cantitateTotala: { $sum: "$cantitate" },
+          caloriiMedii: { $avg: "$calorii" },
+        },
+      },
+    ]).exec();
   },
 };

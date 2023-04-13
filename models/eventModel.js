@@ -7,13 +7,13 @@ const eventSchema = new Schema(
       type: String,
       required: true,
     },
-    filtruVite: string,
+    filtruVite: String,
     schimbariVite: {
       type: String,
       required: false,
     },
 
-    filtruSectii: string,
+    filtruSectii: String,
     schimbariSectii: {
       type: String,
       required: false,

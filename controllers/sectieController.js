@@ -1,4 +1,4 @@
-const { Sectie } = require("../models");
+const { Sectie, Cow } = require("../models");
 
 module.exports = {
   async createSectie(sectie) {

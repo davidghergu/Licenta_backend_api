@@ -63,6 +63,8 @@ app.post("/loginTest", async (req, res) => {
 });
 
 app.post("/cereale", adaptor.createCereale);
+app.get("/cereale", adaptor.getAllCereale);
+
 app.post("/login", adaptor.login);
 
 app.post("/sectie", adaptor.createSectie);
@@ -84,6 +86,7 @@ app.get("/cow", adaptor.getAllCows);
 
 app.post("/event", adaptor.createEvent);
 app.put("/event", adaptor.finishEvent);
+app.get("/event", adaptor.getAllEvents);
 
 app.put("/users/:id", (req, res) => {
   console.log(req.params);
