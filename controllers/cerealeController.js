@@ -25,6 +25,9 @@ module.exports = {
           _id: "$nume",
           cantitateTotala: { $sum: "$cantitate" },
           caloriiMedii: { $avg: "$calorii" },
+          proteineMedii: { $avg: "$proteine" },
+          grasimiMedii: { $avg: "$grasimi" },
+          carbohidratiMedii: { $avg: "$carbohidrati" },
         },
       },
     ]).exec();
