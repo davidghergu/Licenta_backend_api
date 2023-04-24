@@ -1,6 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const adaptor = require("./adaptor");
+const {
+  cowValidationRules,
+  validate,
+} =  require("./middleware/validator")
 const app = express();
 const cors = require("cors");
 app.use(express.json());
@@ -21,12 +25,6 @@ mongoose
   .then((result) => app.listen(process.env.PORT))
   .catch((err) => console.log(err));
 
-// // Set up an in-memory "database"
-// const users = [
-//   { id: 1, name: "Alice", email: "alice@example.com" },
-//   { id: 2, name: "Bob", email: "bob@example.com" },
-//   { id: 3, name: "Charlie", email: "charlie@example.com" },
-// ];
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
@@ -36,16 +34,6 @@ app.get("/users", (req, res) => {
   res.json(users);
 });
 
-// app.post("/login", (req, res) => {
-//   res.json({
-//     name: "Marian Claudiu",
-//     password: "$2a$10$oCp9elyL7TZsRM8n2lGzfelljuiScHMpOLFCU0aEHmnnawfEEaMb2",
-//     email: "okss@gmail.com",
-//     phone: "9110",
-//     role: "Customer",
-//     is_active: true,
-//   });
-// });
 
 app.post("/loginTest", async (req, res) => {
   const { nume, parola } = req.body;
@@ -81,7 +69,12 @@ app.post("/users", (req, res) => {
   res.json(user);
 });
 
-app.post("/cow", adaptor.createCow);
+app.post("/cow",
+          cowValidationRules(),
+          validate, 
+          adaptor.createCow);
+
+
 app.get("/cow", adaptor.getAllCows);
 
 app.post("/event", adaptor.createEvent);
