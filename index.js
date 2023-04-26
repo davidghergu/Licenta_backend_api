@@ -58,6 +58,7 @@ app.post("/login", adaptor.login);
 app.post("/sectie", adaptor.createSectie);
 
 app.post("/dieta", adaptor.createDieta);
+app.get("/dieta", adaptor.getAllDiete)
 
 app.post("/reteta", adaptor.createReteta);
 

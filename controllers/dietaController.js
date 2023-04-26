@@ -17,7 +17,7 @@ module.exports = {
       throw err;
     }
   },
-  async getDietaByQuery(query) {
+  async getDieteByQuery(query) {
     try {
       return await Dieta.find(query).populate("reteta").lean();
     } catch (err) {

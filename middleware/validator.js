@@ -8,7 +8,7 @@ const cowValidationRules = () => {
     check("rasa").notEmpty().withMessage("4"),
     check("varsta").notEmpty().withMessage("5"),
     check("masa_corporala").notEmpty().withMessage("6"),
-    //check("dieta").notEmpty().withMessage("infoPanel is required"),
+    check("dieta").notEmpty().withMessage("infoPanel is required"),
   ];
 };
 

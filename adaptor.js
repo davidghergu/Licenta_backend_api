@@ -19,6 +19,19 @@ module.exports = {
       console.error(err);
     }
   },
+
+  async getAllDiete(req, res, next) {
+    try {
+      res.send(await dietaController.getDieteByQuery());
+    } catch (err) {
+      console.error(err);
+    }
+  },
+
+
+
+
+
   async createAngajat(req, res, next) {
     try {
       res.send(await angajatController.createAngajat(req.body));
@@ -118,16 +131,6 @@ module.exports = {
   async getAllCereale(req, res, next) {
     try {
       const result = await cerealeController.getCerealeByQuery();
-      // .aggregate([
-      //   {
-      //     $group: {
-      //       _id: "$nume",
-      //       cantitateTotala: { $sum: "$cantitate" },
-      //       caloriiMedii: { $avg: "$calorii" },
-      //     },
-      //   },
-      // ])
-      // .exec();
       res.send(result);
     } catch (err) {
       console.error(err);
