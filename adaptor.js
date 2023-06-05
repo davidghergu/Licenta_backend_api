@@ -44,12 +44,6 @@ module.exports = {
     try {
       const viteQuery = cowController.createQuery(req.body);
 
-      //const sectiiQuery = sectieController.createQuery(req.body);
-
-      // const sectiuniQuery = eventController.updateMany(
-      //   { status: "active" },
-      //   { $set: { status: "inactive", updatedAt: Date.now() } }
-      // );
 
       const serializedQuery = JSON.stringify(viteQuery);
       const filtru = JSON.stringify({ _id: req.body.id });
@@ -146,10 +140,17 @@ module.exports = {
   },
   async updateCow(req, res, next) {
     try {
+        cowController.updateCowOficial(req.body)
+        res.send(result)
+
     } catch (err) {
       res.send(err);
     }
   },
+
+
+
+  
   async login(req, res, next) {
     try {
       const { nume, parola } = req.body;

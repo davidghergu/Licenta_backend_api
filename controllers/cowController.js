@@ -15,6 +15,19 @@ module.exports = {
       throw err;
     }
   },
+  async updateCowOficial(vacaUpdatata) {
+    try {
+      const updatedCow = await Cow.findByIdAndUpdate(vacaUpdatata._id, vacaUpdatata, { new: true });
+      if (!updatedCow) {
+        throw new Error("Vaca nu a fost găsită în baza de date");
+      }
+      return updatedCow;
+    } catch (err) {
+      console.error("Eroare:", err);
+      throw err;
+    }
+  },
+  
   async getCowsByQuery(query) {
     try {
       return await Cow.find(query).populate("dieta").lean();

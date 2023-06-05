@@ -77,6 +77,9 @@ app.post("/cow",
 
 
 app.get("/cow", adaptor.getAllCows);
+app.put("/cow", adaptor.updateCow);
+
+
 
 app.post("/event", adaptor.createEvent);
 app.put("/event", adaptor.finishEvent);
