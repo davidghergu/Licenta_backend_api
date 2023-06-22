@@ -3,7 +3,6 @@ module.exports = {
   Cow: require("./cowModel"),
   Dieta: require("./dietaModel"),
   Reteta: require("./retetaModel"),
-  Sectie: require("./sectieModel"),
   Angajat: require("./angajatModel"),
   Event: require("./eventModel"),
 };

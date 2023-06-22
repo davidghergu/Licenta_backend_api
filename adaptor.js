@@ -5,7 +5,7 @@ const {
   retetaController,
   angajatController,
   eventController,
-  sectieController,
+  
 } = require("./controllers");
 
 module.exports = {
@@ -64,19 +64,27 @@ module.exports = {
     try {
       const update = await eventController.finishEvent(req.body);
 
-      const sourceSectionId = "60e92ab9e6c30c61f36f6b75";
-      const destinationSectionId = "60e92ab9e6c30c61f36f6b76";
-      const cowIds = ["60e92ab9e6c30c61f36f6b7a", "60e92ab9e6c30c61f36f6b7b"];
+      // const sourceSectionId = "60e92ab9e6c30c61f36f6b75";
+      // const destinationSectionId = "60e92ab9e6c30c61f36f6b76";
+      // const cowIds = ["60e92ab9e6c30c61f36f6b7a", "60e92ab9e6c30c61f36f6b7b"];
 
-      const sourceGarage = await Garage.findById(sourceSectionId);
-      const movedCows = await sourceGarage.moveCars(
-        sourceSectionId,
-        destinationSectionId,
-        cowIds
-      );
-      console.log(movedCows);
+      // const sourceGarage = await Garage.findById(sourceSectionId);
+      // const movedCows = await sourceGarage.moveCars(
+      //   sourceSectionId,
+      //   destinationSectionId,
+      //   cowIds
+      // );
+      // console.log(movedCows);
 
-      res.send(await cowController.updateCow(update));
+      res.send(await cowController.updateCow(update[0],update[1]));
+    } catch (err) {
+      next(err);
+      console.error(err);
+    }
+  },
+  async acceptEvent(req, res, next) {
+    try {
+      res.send(await eventController.acceptEvent(req.body));
     } catch (err) {
       next(err);
       console.error(err);
@@ -90,14 +98,7 @@ module.exports = {
       console.error(err);
     }
   },
-  async createSectie(req, res, next) {
-    try {
-      res.send(await sectieController.createSectie(req.body));
-    } catch (err) {
-      next(err);
-      console.error(err);
-    }
-  },
+  
   async createReteta(req, res, next) {
     try {
       res.send(await retetaController.createReteta(req.body));
@@ -166,28 +167,5 @@ module.exports = {
     }
   },
 
-  async updateEventDone(req, res, next) {
-    try {
-      //find event ca sa nu dai if la req.body
-      //update status -> terminat
-      if (req.body.schimbariVite) {
-        for (let i = 0; i < req.body.schimbariVite.lenght; i++) {
-          // let changeBody = {
-          //   _id: req.body.idarray[i],
-          //   ...req.body.schimbari[i],
-          // };
-
-          cowController.updateCow(req.body.schimbariVite[i]);
-        }
-      }
-
-      if (req.body.schimbariSectii) {
-        for (let i = 0; i < req.body.schimbariSectii.lenght; i++) {
-          sectieController.updateSectie(req.body.schimbariSectii[i]);
-        }
-      }
-    } catch (err) {
-      res.send(err);
-    }
-  },
+  
 };

@@ -55,7 +55,6 @@ app.get("/cereale", adaptor.getAllCereale);
 
 app.post("/login", adaptor.login);
 
-app.post("/sectie", adaptor.createSectie);
 
 app.post("/dieta", adaptor.createDieta);
 app.get("/dieta", adaptor.getAllDiete)
@@ -85,6 +84,7 @@ app.put("/cow", adaptor.updateCow);
 
 app.post("/event", adaptor.createEvent);
 app.put("/event", adaptor.finishEvent);
+app.put("/event/accept", adaptor.acceptEvent);
 app.get("/event", adaptor.getAllEvents);
 
 app.put("/users/:id", (req, res) => {

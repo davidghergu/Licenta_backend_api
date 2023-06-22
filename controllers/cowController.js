@@ -8,15 +8,15 @@ module.exports = {
       throw err;
     }
   },
-  async updateCow(update) {
+  async updateCow(filter,update) {
     try {
-      return await Cow.findByIdAndUpdate(update._id, update.$set);
+      return await Cow.findByIdAndUpdate(filter._id, update.$set);
     } catch (err) {
       throw err;
     }
   },
   async updateCowOficial(vacaUpdatata) {
-    try {
+    try { 
       const updatedCow = await Cow.findByIdAndUpdate(vacaUpdatata._id, vacaUpdatata, { new: true });
       if (!updatedCow) {
         throw new Error("Vaca nu a fost găsită în baza de date");

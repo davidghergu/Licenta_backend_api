@@ -10,10 +10,13 @@ module.exports = {
   },
   async finishEvent({ id }) {
     try {
-      const query = await Event.findOne({ _id: id });
+      const query = await Event.findByIdAndUpdate({ _id: id },{status:"Terminat"});
 
       const updateObject = JSON.parse(query.schimbariVite);
-
+      //console.log(updateObject);
+      const filterObject = JSON.parse(query.filtruVite);
+      //console.log(filterObject);
+      
       //     const query = MyModel.updateMany(
       //       updateObject.filter,
       //       updateObject.update
@@ -27,7 +30,7 @@ module.exports = {
       //     });
       //   }
       // });
-      return updateObject;
+      return [filterObject,updateObject];
     } catch (err) {
       throw err;
     }
@@ -35,6 +38,13 @@ module.exports = {
   async getEventsByQuery(query) {
     try {
       return await Event.find(query).lean();
+    } catch (err) {
+      throw err;
+    }
+  },
+  async acceptEvent({ id }) {
+    try {
+      return await Event.findByIdAndUpdate({ _id: id },{status:"Acceptat"});
     } catch (err) {
       throw err;
     }
