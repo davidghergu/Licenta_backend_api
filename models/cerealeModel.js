@@ -21,11 +21,11 @@ const cerealeSchema = new Schema(
     },
     grasimi: {
       type: Number,
-      required: false,
+      required: true,
     },
     carbohidrati: {
       type: Number,
-      required: false,
+      required: true,
     },
   },
   { timestamps: true }
