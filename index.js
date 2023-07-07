@@ -60,6 +60,7 @@ app.post("/dieta", adaptor.createDieta);
 app.get("/dieta", adaptor.getAllDiete)
 
 app.post("/reteta", adaptor.createReteta);
+app.get("/reteta",adaptor.getAllRetete);
 
 app.post("/angajat", adaptor.createAngajat);
 

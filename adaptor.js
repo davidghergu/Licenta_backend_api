@@ -107,6 +107,14 @@ module.exports = {
       console.error(err);
     }
   },
+  async getAllRetete(req, res, next) {
+    try {
+      const result = await retetaController.getRetetaByQuery();
+      res.send(result);
+    } catch (err) {
+      console.error(err);
+    }
+  },
 
   async createCow(req, res, next) {
     try {
