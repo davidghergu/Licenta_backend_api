@@ -62,21 +62,9 @@ module.exports = {
   },
   async finishEvent(req, res, next) {
     try {
-      const update = await eventController.finishEvent(req.body);
+      res.send(await eventController.finishEvent(req.body));
 
-      // const sourceSectionId = "60e92ab9e6c30c61f36f6b75";
-      // const destinationSectionId = "60e92ab9e6c30c61f36f6b76";
-      // const cowIds = ["60e92ab9e6c30c61f36f6b7a", "60e92ab9e6c30c61f36f6b7b"];
-
-      // const sourceGarage = await Garage.findById(sourceSectionId);
-      // const movedCows = await sourceGarage.moveCars(
-      //   sourceSectionId,
-      //   destinationSectionId,
-      //   cowIds
-      // );
-      // console.log(movedCows);
-
-      res.send(await cowController.updateCow(update[0],update[1]));
+      //await cowController.updateCow(update[0],update[1]));
     } catch (err) {
       next(err);
       console.error(err);
@@ -140,7 +128,7 @@ module.exports = {
     }
   },
   async getAllEvents(req, res, next) {
-    const query = { status: { $in: ["Trimis", "Acceptat"] } };
+    const query = { status: { $in: ["Trimis", "Acceptat","Terminat"] } };
     try {
       res.send(await eventController.getEventsByQuery(query));
     } catch (err) {
